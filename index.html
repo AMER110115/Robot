@@ -1,18 +1,66 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-  <meta charset="UTF-8" />
-  <title>پخش صدا با جاوااسکریپت</title>
+<meta charset="UTF-8" />
+<title>شوخی با دوست</title>
+<style>
+  body {
+    font-family: Tahoma, sans-serif;
+    background-color: #000;
+    color: #0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    user-select: none;
+  }
+  #message {
+    font-size: 2rem;
+    text-align: center;
+    max-width: 400px;
+  }
+</style>
 </head>
 <body>
-  <button id="playBtn">پخش صدا</button>
+  <div id="message">منتظر یه چیز عجیب باش!</div>
 
-  <script>
-    // ساخت یک آبجکت صوتی جدید
-    const audio = new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3');
+<script>
+const messages = [
+  "یه دقیقه صبر کن...",
+  "دارم یه چیز جالب میفرستم!",
+  "پدرم در میاد از دستم 😂",
+  "آهای دوست عزیز! آماده شو!",
+  "بزن بریم!",
+];
 
-    // وقتی دکمه کلیک شد، صدا پخش شود
-    audio.play();
-  </script>
+const sounds = [
+  "https://www.soundjay.com/buttons/sounds/button-3.mp3",
+  "https://www.soundjay.com/buttons/sounds/button-4.mp3",
+  "https://www.soundjay.com/buttons/sounds/button-5.mp3",
+];
+
+// نمایش پیام‌ها پشت سر هم
+let i = 0;
+const msgDiv = document.getElementById("message");
+
+function showNextMessage() {
+  if (i < messages.length) {
+    msgDiv.textContent = messages[i];
+    playRandomSound();
+    i++;
+    setTimeout(showNextMessage, 2500);
+  } else {
+    msgDiv.textContent = "تموم شد! 😈";
+  }
+}
+
+function playRandomSound() {
+  const sound = new Audio(sounds[Math.floor(Math.random() * sounds.length)]);
+  sound.play();
+}
+
+// شروع شوخی
+showNextMessage();
+</script>
 </body>
 </html>
