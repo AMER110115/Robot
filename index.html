@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>هک شدن گوشی 😱</title>
+<style>
+    body {
+        background-color: black;
+        color: lime;
+        font-family: monospace;
+        padding: 20px;
+        direction: rtl;
+        overflow: hidden;
+        transition: background-color 0.3s;
+        user-select: none;
+        cursor: pointer;
+    }
+    #start-text {
+        color: red;
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 50px;
+    }
+    .code-box {
+        background: #111;
+        color: #0f0;
+        padding: 10px;
+        margin: 20px 0;
+        border: 1px solid lime;
+        white-space: pre-wrap;
+        font-size: 16px;
+        user-select: text;
+    }
+    #final {
+        display: none;
+        background: green;
+        color: white;
+        padding: 20px;
+        font-size: 20px;
+        text-align: center;
+        margin-top: 40px;
+    }
+    .shake {
+        animation: shake 0.1s infinite;
+    }
+    @keyframes shake {
+        0% { transform: translate(2px, 2px) rotate(1deg); }
+        25% { transform: translate(-2px, -1px) rotate(-1deg); }
+        50% { transform: translate(2px, -2px) rotate(1deg); }
+        75% { transform: translate(-1px, 2px) rotate(-1deg); }
+        100% { transform: translate(2px, 2px) rotate(1deg); }
+    }
+</style>
+</head>
+<body id="body">
+
+<div id="start-text">⚠️ گوشی‌ات داره فرمت میشه... صفحه رو لمس کن تا ادامه پیدا کنه!</div>
+
+<div id="content" style="display:none;">
+    <div class="code-box">
+        &lt;?php<br>
+        echo "گوشیت هک شد... شوخی کردم 😄";<br>
+        ?&gt;
+    </div>
+
+    <div class="code-box">
+        import os<br>
+        print("پاک‌سازی حافظه شروع شد... 🤯")<br>
+        os.remove("C:\\Windows\\System32")  # شوخیه فقط 😅
+    </div>
+
+    <div class="code-box">
+        // کدی که هیچ کاری نمی‌کنه جز اینکه توش یه پیام قایمه<br>
+        function troll() {<br>
+        &nbsp;&nbsp;// تو خیلی باحالی! 👀<br>
+        }
+    </div>
+
+    <div class="code-box" style="color:red; font-weight:bold; text-align:center;">
+        🔊 هشدار امنیتی فعال شد!
+    </div>
+
+    <div id="final">
+        🎉 شوخی بود! گوشی‌ات امنه 😄
+    </div>
+</div>
+
+<audio id="alarm" src="https://www.soundjay.com/button/beep-07.wav" preload="auto"></audio>
+
+<script>
+    const body = document.getElementById('body');
+    const startText = document.getElementById('start-text');
+    const content = document.getElementById('content');
+    const final = document.getElementById('final');
+    const alarm = document.getElementById('alarm');
+
+    function startTroll() {
+        startText.style.display = 'none';
+        content.style.display = 'block';
+
+        body.classList.add('shake');
+
+        alarm.play().catch(() => {});
+
+        let colors = ['red', 'white'];
+        let i = 0;
+        let flashInterval = setInterval(() => {
+            body.style.backgroundColor = colors[i % 2];
+            i++;
+            if (i > 10) {
+                clearInterval(flashInterval);
+                body.style.backgroundColor = 'black';
+                body.classList.remove('shake');
+                final.style.display = 'block';
+            }
+        }, 300);
+    }
+
+    body.addEventListener('click', () => {
+        if (startText.style.display !== 'none') {
+            startTroll();
+        }
+    });
+</script>
+
+</body>
+</html>
